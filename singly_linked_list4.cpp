@@ -1,4 +1,4 @@
-// Program: Operations on Remove Duplicate Nodes using Singly Linked List
+// Program: Demonstration of Remove Duplicate Nodes using Singly Linked List
 // Topic: Singly Linked List in C++
 
 
