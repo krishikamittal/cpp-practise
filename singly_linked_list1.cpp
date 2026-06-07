@@ -1,7 +1,6 @@
 // Program: Demonstration of compare Two Linked Lists using Singly Linked List
 // Topic: Singly Linked List in C++
 
-
 #include<iostream>
 using namespace std;
 
@@ -16,57 +15,71 @@ public:
     }
 };
 
-void insertAtTail(Node* &head,int val){
+class List{
 
-    Node* n = new Node(val);
+    Node* head;
+    Node* tail;
 
-    if(head==NULL){
-        head=n;
-        return;
+public:
+
+    List(){
+        head = tail = NULL;
     }
 
-    Node* temp=head;
+    void insertAtTail(int val){
 
-    while(temp->next!=NULL){
-        temp=temp->next;
+        Node* newNode = new Node(val);
+
+        if(head == NULL){
+            head = tail = newNode;
+        }
+        else{
+            tail->next = newNode;
+            tail = newNode;
+        }
     }
 
-    temp->next=n;
-}
+    Node* getHead(){
+        return head;
+    }
 
-bool identical(Node* head1,Node* head2){
+    bool identical(List &l2){
 
-    while(head1!=NULL && head2!=NULL){
+        Node* temp1 = head;
+        Node* temp2 = l2.getHead();
 
-        if(head1->data != head2->data){
-            return false;
+        while(temp1 != NULL && temp2 != NULL){
+
+            if(temp1->data != temp2->data){
+                return false;
+            }
+
+            temp1 = temp1->next;
+            temp2 = temp2->next;
         }
 
-        head1=head1->next;
-        head2=head2->next;
-    }
+        if(temp1 == NULL && temp2 == NULL){
+            return true;
+        }
 
-    if(head1==NULL && head2==NULL){
-        return true;
+        return false;
     }
-
-    return false;
-}
+};
 
 int main(){
 
-    Node* head1=NULL;
-    Node* head2=NULL;
+    List l1;
+    List l2;
 
-    insertAtTail(head1,1);
-    insertAtTail(head1,2);
-    insertAtTail(head1,3);
+    l1.insertAtTail(1);
+    l1.insertAtTail(2);
+    l1.insertAtTail(3);
 
-    insertAtTail(head2,1);
-    insertAtTail(head2,2);
-    insertAtTail(head2,3);
+    l2.insertAtTail(1);
+    l2.insertAtTail(2);
+    l2.insertAtTail(3);
 
-    if(identical(head1,head2)){
+    if(l1.identical(l2)){
         cout<<"Lists are Identical";
     }
     else{
