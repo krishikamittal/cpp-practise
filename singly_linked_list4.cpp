@@ -1,7 +1,6 @@
 // Program: Demonstration of Remove Duplicate Nodes using Singly Linked List
 // Topic: Singly Linked List in C++
 
-
 #include<iostream>
 using namespace std;
 
@@ -11,70 +10,80 @@ public:
     Node* next;
 
     Node(int val){
-        data=val;
-        next=NULL;
+        data = val;
+        next = NULL;
     }
 };
 
-void insertAtTail(Node* &head,int val){
+class List{
 
-    Node* n=new Node(val);
+    Node* head;
+    Node* tail;
 
-    if(head==NULL){
-        head=n;
-        return;
+public:
+
+    List(){
+        head = tail = NULL;
     }
 
-    Node* temp=head;
+    void insertAtTail(int val){
 
-    while(temp->next!=NULL){
-        temp=temp->next;
-    }
+        Node* newNode = new Node(val);
 
-    temp->next=n;
-}
-
-void removeDuplicates(Node* head){
-
-    Node* temp=head;
-
-    while(temp!=NULL && temp->next!=NULL){
-
-        if(temp->data == temp->next->data){
-
-            Node* todelete=temp->next;
-
-            temp->next=temp->next->next;
-
-            delete todelete;
+        if(head == NULL){
+            head = tail = newNode;
         }
         else{
-            temp=temp->next;
+            tail->next = newNode;
+            tail = newNode;
         }
     }
-}
 
-void display(Node* head){
+    void removeDuplicates(){
 
-    while(head!=NULL){
-        cout<<head->data<<" ";
-        head=head->next;
+        Node* temp = head;
+
+        while(temp != NULL && temp->next != NULL){
+
+            if(temp->data == temp->next->data){
+
+                Node* todelete = temp->next;
+
+                temp->next = temp->next->next;
+
+                delete todelete;
+            }
+            else{
+                temp = temp->next;
+            }
+        }
     }
-}
+
+    void display(){
+
+        Node* temp = head;
+
+        while(temp != NULL){
+
+            cout<<temp->data<<" ";
+            temp = temp->next;
+        }
+    }
+};
 
 int main(){
 
-    Node* head=NULL;
+    List l;
 
-    insertAtTail(head,1);
-    insertAtTail(head,1);
-    insertAtTail(head,2);
-    insertAtTail(head,2);
-    insertAtTail(head,3);
+    l.insertAtTail(1);
+    l.insertAtTail(1);
+    l.insertAtTail(2);
+    l.insertAtTail(2);
+    l.insertAtTail(3);
 
-    removeDuplicates(head);
+    l.removeDuplicates();
 
-    display(head);
+    l.display();
 
     return 0;
 }
