@@ -1,3 +1,5 @@
+// Program: student role using Inheritance
+// Topic: Object-Oriented Programming - Inheritance
 #include <iostream>
 #include <string>
 using namespace std;
