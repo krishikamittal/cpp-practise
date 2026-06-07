@@ -1,3 +1,5 @@
+// Program: patient information using Dynamic Memory Allocation
+// Topic: Dynamic Memory Allocation (DMA)
 #include <iostream>
 using namespace std;
 
