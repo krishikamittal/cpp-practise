@@ -1,7 +1,6 @@
 // Program: Demonstration of Merge Two Sorted Linked Lists using Singly Linked List Operations
 // Topic: Singly Linked List in C++
 
-
 #include<iostream>
 using namespace std;
 
@@ -11,68 +10,86 @@ public:
     Node* next;
 
     Node(int val){
-        data=val;
-        next=NULL;
+        data = val;
+        next = NULL;
     }
 };
 
-void insertAtTail(Node* &head,int val){
+class List{
 
-    Node* n = new Node(val);
+    Node* head;
+    Node* tail;
 
-    if(head==NULL){
-        head=n;
-        return;
+public:
+
+    List(){
+        head = tail = NULL;
     }
 
-    Node* temp=head;
+    void insertAtTail(int val){
 
-    while(temp->next!=NULL){
-        temp=temp->next;
-    }
+        Node* newNode = new Node(val);
 
-    temp->next=n;
-}
-
-void merge(Node* head1,Node* head2){
-
-    while(head1!=NULL && head2!=NULL){
-
-        if(head1->data < head2->data){
-            cout<<head1->data<<" ";
-            head1=head1->next;
+        if(head == NULL){
+            head = tail = newNode;
         }
         else{
-            cout<<head2->data<<" ";
-            head2=head2->next;
+            tail->next = newNode;
+            tail = newNode;
         }
     }
 
-    while(head1!=NULL){
-        cout<<head1->data<<" ";
-        head1=head1->next;
+    Node* getHead(){
+        return head;
     }
 
-    while(head2!=NULL){
-        cout<<head2->data<<" ";
-        head2=head2->next;
+    void merge(List &l2){
+
+        Node* temp1 = head;
+        Node* temp2 = l2.getHead();
+
+        while(temp1 != NULL && temp2 != NULL){
+
+            if(temp1->data < temp2->data){
+
+                cout<<temp1->data<<" ";
+                temp1 = temp1->next;
+            }
+            else{
+
+                cout<<temp2->data<<" ";
+                temp2 = temp2->next;
+            }
+        }
+
+        while(temp1 != NULL){
+
+            cout<<temp1->data<<" ";
+            temp1 = temp1->next;
+        }
+
+        while(temp2 != NULL){
+
+            cout<<temp2->data<<" ";
+            temp2 = temp2->next;
+        }
     }
-}
+};
 
 int main(){
 
-    Node* head1=NULL;
-    Node* head2=NULL;
+    List l1;
+    List l2;
 
-    insertAtTail(head1,1);
-    insertAtTail(head1,3);
-    insertAtTail(head1,5);
+    l1.insertAtTail(1);
+    l1.insertAtTail(3);
+    l1.insertAtTail(5);
 
-    insertAtTail(head2,2);
-    insertAtTail(head2,4);
-    insertAtTail(head2,6);
+    l2.insertAtTail(2);
+    l2.insertAtTail(4);
+    l2.insertAtTail(6);
 
-    merge(head1,head2);
+    l1.merge(l2);
 
     return 0;
 }
