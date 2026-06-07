@@ -7,19 +7,17 @@ class BillingDepartment;
 
 class Patient
 {
-private:
+public:
     char* patientName;
     int patientID;
     int daysAdmitted;
     float treatmentCost;
 
-public:
-    static int totalPatients;
+    static int count;
 
-    // Constructor
     Patient()
     {
-        patientName = new char[30];
+        patientName = new char[20];
     }
 
     void input()
@@ -36,7 +34,7 @@ public:
         cout << "Enter Treatment Cost: ";
         cin >> treatmentCost;
 
-        totalPatients++;
+        count++;
     }
 
     void display()
@@ -45,27 +43,28 @@ public:
         cout << "Patient ID   : " << patientID << endl;
         cout << "Days Admitted: " << daysAdmitted << endl;
         cout << "Treatment Cost: " << treatmentCost << endl;
-        cout << "-----------------------" << endl;
+        cout << "----------------------" << endl;
     }
 
-    
     friend class BillingDepartment;
 
-    // Destructor
     ~Patient()
     {
         delete[] patientName;
     }
 };
 
-int Patient::totalPatients = 0;
+int Patient::count = 0;
 
 class BillingDepartment
 {
 public:
-    void applyInsurance(Patient &p)
+    void applyDiscount(Patient* p, int n)
     {
-        p.treatmentCost = p.treatmentCost * 0.8;   
+        for (int i = 0; i < n; i++)
+        {
+            p[i].treatmentCost = p[i].treatmentCost * 0.8; 
+        }
     }
 };
 
@@ -91,11 +90,7 @@ int main()
     }
 
     cout << "\nApplying Medical Insurance Discount (20%)...\n";
-
-    for (int i = 0; i < n; i++)
-    {
-        bill.applyInsurance(p[i]);
-    }
+    bill.applyDiscount(p, n);
 
     cout << "\nUpdated Patient Bills:\n";
     for (int i = 0; i < n; i++)
@@ -104,8 +99,9 @@ int main()
     }
 
     cout << "Total number of patients: "
-         << Patient::totalPatients << endl;
+         << Patient::count << endl;
 
     delete[] p;
     return 0;
+}
 }
