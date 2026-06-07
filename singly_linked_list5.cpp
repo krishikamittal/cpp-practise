@@ -10,66 +10,76 @@ public:
     Node* next;
 
     Node(int val){
-        data=val;
-        next=NULL;
+        data = val;
+        next = NULL;
     }
 };
 
-void insertAtTail(Node* &head,int val){
+class List{
 
-    Node* n=new Node(val);
+    Node* head;
+    Node* tail;
 
-    if(head==NULL){
-        head=n;
-        return;
+public:
+
+    List(){
+        head = tail = NULL;
     }
 
-    Node* temp=head;
+    void insertAtTail(int val){
 
-    while(temp->next!=NULL){
-        temp=temp->next;
+        Node* newNode = new Node(val);
+
+        if(head == NULL){
+            head = tail = newNode;
+        }
+        else{
+            tail->next = newNode;
+            tail = newNode;
+        }
     }
 
-    temp->next=n;
-}
+    void moveLastToFront(){
 
-void moveLastToFront(Node* &head){
+        Node* temp = head;
 
-    Node* temp=head;
+        while(temp->next != tail){
+            temp = temp->next;
+        }
 
-    while(temp->next->next!=NULL){
-        temp=temp->next;
+        tail->next = head;
+
+        head = tail;
+
+        tail = temp;
+
+        tail->next = NULL;
     }
 
-    Node* last=temp->next;
+    void display(){
 
-    temp->next=NULL;
+        Node* temp = head;
 
-    last->next=head;
+        while(temp != NULL){
 
-    head=last;
-}
-
-void display(Node* head){
-
-    while(head!=NULL){
-        cout<<head->data<<" ";
-        head=head->next;
+            cout<<temp->data<<" ";
+            temp = temp->next;
+        }
     }
-}
+};
 
 int main(){
 
-    Node* head=NULL;
+    List l;
 
-    insertAtTail(head,1);
-    insertAtTail(head,2);
-    insertAtTail(head,3);
-    insertAtTail(head,4);
+    l.insertAtTail(1);
+    l.insertAtTail(2);
+    l.insertAtTail(3);
+    l.insertAtTail(4);
 
-    moveLastToFront(head);
+    l.moveLastToFront();
 
-    display(head);
+    l.display();
 
     return 0;
 }
