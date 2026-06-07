@@ -1,7 +1,6 @@
 // Program: Demonstration of Intersection of Two Linked Lists using Singly Linked List Operations
 // Topic: Singly Linked List in C++
 
-
 #include<iostream>
 using namespace std;
 
@@ -11,37 +10,59 @@ public:
     Node* next;
 
     Node(int val){
-        data=val;
-        next=NULL;
+        data = val;
+        next = NULL;
     }
 };
 
-int countNodes(Node* head){
+class List{
 
-    int count=0;
+    Node* head;
+    Node* tail;
 
-    while(head!=NULL){
-        count++;
-        head=head->next;
+public:
+
+    List(){
+        head = tail = NULL;
     }
 
-    return count;
-}
+    void insertAtTail(int val){
 
-Node* intersection(Node* head1,Node* head2){
+        Node* newNode = new Node(val);
 
-    while(head1!=NULL && head2!=NULL){
+        if(head == NULL){
+            head = tail = newNode;
+        }
+        else{
+            tail->next = newNode;
+            tail = newNode;
+        }
+    }
 
-        if(head1==head2){
-            return head1;
+    Node* getHead(){
+        return head;
+    }
+
+    void intersection(List &l2){
+
+        Node* temp1 = head;
+        Node* temp2 = l2.getHead();
+
+        while(temp1 != NULL && temp2 != NULL){
+
+            if(temp1 == temp2){
+
+                cout<<"Intersection at node "<<temp1->data;
+                return;
+            }
+
+            temp1 = temp1->next;
+            temp2 = temp2->next;
         }
 
-        head1=head1->next;
-        head2=head2->next;
+        cout<<"No Intersection";
     }
-
-    return NULL;
-}
+};
 
 int main(){
 
@@ -49,22 +70,19 @@ int main(){
     common->next = new Node(4);
     common->next->next = new Node(5);
 
-    Node* head1 = new Node(1);
-    head1->next = new Node(2);
-    head1->next->next = common;
+    List l1;
+    List l2;
 
-    Node* head2 = new Node(6);
-    head2->next = new Node(7);
-    head2->next->next = common;
+    l1.insertAtTail(1);
+    l1.insertAtTail(2);
 
-    Node* ans = intersection(head1,head2);
+    l2.insertAtTail(6);
+    l2.insertAtTail(7);
 
-    if(ans!=NULL){
-        cout<<"Intersection at "<<ans->data;
-    }
-    else{
-        cout<<"No Intersection";
-    }
+    l1.getHead()->next->next = common;
+    l2.getHead()->next->next = common;
+
+    l1.intersection(l2);
 
     return 0;
 }
