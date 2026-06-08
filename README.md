@@ -10,7 +10,9 @@ Topics Covered:
 - Arrays
 - Object-Oriented Programming (OOP)
   - Classes & Objects
+  - Static Data Members & Functions
   - Constructors
+  - Dynamic Memory Allocation (DMA)
   - Inheritance
   - Polymorphism
   - Friend Functions
