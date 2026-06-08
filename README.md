@@ -5,7 +5,7 @@ This repository contains C++ programs and coding exercises that I have written w
 Topics Covered:
 
 - Basics & Input/Output
-- Loops and Control Statements
+- Conditional Statements
 - Functions
 - Arrays
 - Object-Oriented Programming (OOP)
