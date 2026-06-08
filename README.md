@@ -1,13 +1,33 @@
-# C++ Practice
+# C++ Practice Repository
 
-This repository contains C++ programs and coding exercises that I am using to strengthen my programming fundamentals.
+This repository contains C++ programs and coding exercises that I have written while learning and practicing C++.
 
-Topics covered:
-- Basics
-- Loops
+Topics Covered:
+
+- Basics & Input/Output
+- Loops and Control Statements
 - Functions
 - Arrays
-- Pattern Problems
-- Problem Solving
+- Object-Oriented Programming (OOP)
+  - Classes & Objects
+  - Constructors
+  - Inheritance
+  - Polymorphism
+  - Friend Functions
+- Operator Overloading
+- Exception Handling
+- Templates
+- Basic Standard Template Library (STL)
+- Linked Lists
+  - Singly Linked List
+  - Doubly Linked List
+  - Circular Linked List
+  
+## Purpose
 
-I will continue updating this repository as I learn new concepts and solve more problems.
+The goal of this repository is to strengthen my programming fundamentals, improve problem-solving skills, and build a strong foundation in Data Structures and Object-Oriented Programming.
+
+## Future Updates
+
+I will continue updating this repository as I learn new concepts, practice more problems, and explore advanced topics in C++.
+
